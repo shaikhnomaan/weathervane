@@ -17,9 +17,13 @@
 .shell {
   max-width: 72rem;
   margin: 0 auto;
-  padding: max(1rem, env(safe-area-inset-top)) clamp(0.75rem, 4vw, 2rem) 3rem;
+  padding: max(1rem, env(safe-area-inset-top)) clamp(0.75rem, 4vw, 2rem) 1rem;
   overflow-x: hidden;
   position: relative;
+  /* NEW: keep the footer at the bottom on short pages */
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
 }
 
 .top {
@@ -105,6 +109,10 @@ main {
   margin-top: 2.5rem;
   font-size: 0.875rem;
   text-align: center;
+  margin-top: auto;
+  /* was: margin-top: 2.5rem; pushes the footer to the bottom */
+  padding-top: 2.5rem;
+  /* keeps the same gap above it when the page is long */
 }
 
 .foot a {
