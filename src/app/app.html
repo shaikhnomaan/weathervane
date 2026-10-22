@@ -1,0 +1,52 @@
+<a class="skip" href="#main">Skip to weather</a>
+
+<div class="shell">
+  <header class="top">
+    <h1 class="brand">Weathervane </h1>
+
+    <div class="units" role="group" aria-label="Temperature units">
+      <button type="button" [attr.aria-pressed]="state().units === 'metric'"
+        (click)="store.setUnits('metric')">°C</button>
+      <button type="button" [attr.aria-pressed]="state().units === 'imperial'"
+        (click)="store.setUnits('imperial')">°F</button>
+    </div>
+
+    <div class="tools">
+      <app-city-search (placeSelected)="store.selectPlace($event)" />
+      <app-location-button [busy]="state().locating" [permission]="permission()" (locate)="onLocate()" />
+    </div>
+  </header>
+
+  <main id="main" tabindex="-1">
+    @if (state().error; as error) {
+    <app-error-banner [error]="error"
+      [canRetry]="state().place !== null && error.kind.startsWith('geolocation') === false" (retry)="store.refresh()"
+      (dismissed)="store.dismissError()" />
+    }
+
+    @if (state().report; as report) {
+    <div class="grid">
+      <app-weather-card [report]="report" [units]="state().units" [refreshing]="state().fetching" />
+      <app-forecast-list [days]="report.daily" [units]="state().units" />
+    </div>
+    <app-hourly-forecast [hours]="report.hourly" [units]="state().units" />
+    <app-activities [current]="report.current" [units]="state().units" />
+    } @else if (state().fetching || state().locating) {
+    <app-loading-spinner [label]="state().locating ? 'Finding your location…' : 'Loading weather…'" />
+    } @else if (!state().error) {
+    <section class="empty">
+      <h2>Where do you want the forecast?</h2>
+      <p>Search for a city above, or use your location to see current conditions and the week ahead.</p>
+    </section>
+    }
+  </main>
+
+  <footer class="foot">
+    <p>
+      Weather data by <a href="https://open-meteo.com/" rel="noopener">Open-Meteo.com</a> (CC BY 4.0).
+      Location names from Open-Meteo and <a href="https://www.bigdatacloud.com/" rel="noopener">BigDataCloud</a>.
+    </p>
+    <p class="credit">Created and designed by <a href="https://www.linkedin.com/in/abu-nomaan-shaikh-22904b106/"
+        target="_blank" rel="noopener"><strong>Abu Nomaan</strong></a></p>
+  </footer>
+</div>

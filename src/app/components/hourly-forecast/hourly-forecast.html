@@ -1,0 +1,41 @@
+<section class="hourly" aria-labelledby="hourly-heading">
+  <div class="head">
+    <div>
+      <h2 id="hourly-heading" class="heading">Next 24 hours</h2>
+      <p class="sub">{{ note() }}</p>
+    </div>
+
+    <div class="metrics" role="group" aria-label="Detail to show for each hour">
+      @for (m of metrics; track m.id) {
+      <button type="button" [attr.aria-pressed]="metric() === m.id" (click)="metric.set(m.id)">{{ m.label }}</button>
+      }
+    </div>
+  </div>
+
+  @if (rows().length) {
+  <div class="scroll" tabindex="0" role="region" aria-label="Hourly forecast, scrolls sideways">
+    <div class="inner" [style.min-width.rem]="widthRem()">
+      <svg class="curve" [attr.viewBox]="'0 0 ' + rows().length + ' 100'" preserveAspectRatio="none"
+        aria-hidden="true" focusable="false">
+        <polyline [attr.points]="curve()" fill="none" stroke="currentColor" stroke-width="2.5"
+          stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" />
+      </svg>
+
+      <ol class="cells">
+        @for (r of rows(); track r.key) {
+        <li class="cell" [class.night]="r.night" [class.newday]="r.newDay" [class.now]="$first">
+          <span class="sr-only">{{ r.spoken }}</span>
+          <span class="time" aria-hidden="true">{{ r.label }}</span>
+          <span class="icon" aria-hidden="true">{{ r.icon }}</span>
+          <span class="temp" aria-hidden="true">{{ r.temp }}°</span>
+          <span class="val" [class]="'lv-' + r.level" aria-hidden="true">{{ r.value }}</span>
+        </li>
+        }
+      </ol>
+    </div>
+  </div>
+  <p class="legend">Shaded hours are after dark. Dashed line marks the start of tomorrow.</p>
+  } @else {
+  <p class="empty">Hourly data isn't available right now.</p>
+  }
+</section>

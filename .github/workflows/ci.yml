@@ -1,0 +1,27 @@
+# Quality gate: runs on every pull request and every push to main.
+# Netlify does the deploying; this workflow only proves the code installs, passes tests and builds.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - run: npm ci
+      - run: npm test -- --no-watch
+      - run: npm run build:prod

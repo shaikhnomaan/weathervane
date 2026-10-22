@@ -1,0 +1,189 @@
+:host {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+.card {
+  padding: clamp(1rem, 4vw, 2rem);
+  border-radius: calc(var(--radius) + 6px);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+.place {
+  font: 600 clamp(1.5rem, 4vw, 2rem)/1.15 var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.region {
+  font-size: 0.9375rem;
+  opacity: 0.9;
+}
+
+.now {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 0.5rem 2rem;
+  margin-top: 1rem;
+}
+
+.num {
+  font: 300 clamp(4.5rem, 20vw, 6.5rem)/0.9 var(--font-display);
+  letter-spacing: -0.05em;
+  font-variant-numeric: tabular-nums;
+}
+
+.cond {
+  font: 500 1.5rem/1.2 var(--font-display);
+}
+
+.feels {
+  margin-top: 0.25rem;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 1.75rem;
+}
+
+.stat {
+  padding: 0.625rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+}
+
+dt {
+  font-size: 0.8125rem;
+  opacity: 0.9;
+}
+
+dd {
+  margin: 0;
+  font: 600 1.125rem/1.3 var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+
+.sub {
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0.85;
+  margin-left: 0.35rem;
+  vertical-align: baseline;
+}
+
+.updated {
+  margin-top: 1.25rem;
+  font-size: 0.875rem;
+  opacity: 0.9;
+}
+
+/* Status pill badge */
+.stats .stat dd .sub {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+  padding: 3px 9px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* AQI badges */
+.aqi-good {
+  color: #22c55e;
+  background-color: #e8f0fe;
+}
+
+.aqi-moderate {
+  color: #a87900;
+  background-color: #fff7d6;
+}
+
+.aqi-sensitive {
+  color: #c45b12;
+  background-color: #fff0e3;
+}
+
+.aqi-unhealthy {
+  color: #d32f2f;
+  background-color: #fdeaea;
+}
+
+.aqi-very-unhealthy {
+  color: #8538bd;
+  background-color: #f3e8ff;
+}
+
+.aqi-hazardous {
+  color: #7f1d1d;
+  background-color: #fee2e2;
+}
+
+/* UV Index badges */
+.uv-low {
+  color: #3978d4;
+  background-color: #e8f0fe;
+}
+
+.uv-moderate {
+  color: #a87900;
+  background-color: #fff7d6;
+}
+
+.uv-high {
+  color: #c45b12;
+  background-color: #fff0e3;
+}
+
+.uv-very-high {
+  color: #d32f2f;
+  background-color: #fdeaea;
+}
+
+.uv-extreme {
+  color: #8538bd;
+  background-color: #f3e8ff;
+}
+
+.status-unknown {
+  color: #6b7280;
+  background-color: #f3f4f6;
+}
+
+@media (min-width: 22.5rem) {
+  .stats {
+    gap: 0.75rem;
+  }
+
+  .stat {
+    padding: 0.75rem 0.875rem;
+  }
+
+  dt {
+    font-size: 0.875rem;
+  }
+
+  dd {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 40rem) {
+  .stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

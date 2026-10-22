@@ -1,0 +1,12 @@
+<div class="banner" role="alert">
+  <div class="copy">
+    <strong class="title">{{ error().title }}</strong>
+    <p class="message">{{ error().message }}</p>
+  </div>
+  <div class="actions">
+    @if (canRetry()) {
+      <button type="button" (click)="retry.emit()">Try again</button>
+    }
+    <button type="button" class="quiet" (click)="dismissed.emit()">Dismiss</button>
+  </div>
+</div>

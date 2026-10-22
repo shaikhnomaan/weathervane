@@ -1,0 +1,35 @@
+<section class="card" aria-labelledby="place-heading">
+  <header>
+    <h2 id="place-heading" class="place">{{ report().place.name }}</h2>
+    @if (regionLine(); as line) {
+    <p class="region">{{ line }}</p>
+    }
+  </header>
+
+  <div class="now">
+    <p class="temp">
+      <span class="sr-only">{{ temp() }} degrees {{ labels().tempName }}</span>
+      <span class="num" aria-hidden="true">{{ temp() }}°</span>
+    </p>
+    <div class="summary">
+      <p class="cond"><span aria-hidden="true">{{ info().icon }}</span> {{ info().label }}</p>
+      <p class="feels">Feels like {{ feelsLike() }}°</p>
+    </div>
+  </div>
+
+  <dl class="stats">
+    @for (s of stats(); track s.label) {
+    <div class="stat">
+      <dt>{{ s.label }}</dt>
+      <dd>
+        {{ s.value }}
+        @if (s.sub) {
+        <span class="sub" [class]="s.statusClass">{{ s.sub }}</span>
+        }
+      </dd>
+    </div>
+    }
+  </dl>
+
+  <p class="updated">{{ refreshing() ? 'Refreshing…' : 'Updated ' + ago() }}</p>
+</section>

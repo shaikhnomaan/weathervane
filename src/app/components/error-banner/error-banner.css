@@ -1,0 +1,46 @@
+.banner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.title {
+  font-weight: 650;
+}
+
+.message {
+  font-size: 0.9375rem;
+  opacity: 0.92;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+button {
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 1.5px solid var(--paper);
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+button.quiet {
+  background: transparent;
+  color: var(--paper);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--paper);
+  outline-offset: 2px;
+}

@@ -1,0 +1,26 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 4rem 1rem;
+}
+
+.ring {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  border: 3px solid var(--line);
+  border-top-color: var(--ink);
+  animation: spin 0.9s linear infinite;
+}
+
+.text {
+  font-size: 1rem;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

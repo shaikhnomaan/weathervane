@@ -1,0 +1,140 @@
+:host {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+.activities {
+  padding: clamp(1rem, 4vw, 1.75rem);
+  border-radius: calc(var(--radius) + 6px);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  overflow: hidden;
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.heading {
+  font: 600 1.25rem/1.2 var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.sub {
+  margin-top: 0.25rem;
+  font-size: 0.8125rem;
+  opacity: 0.85;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.75rem 0.875rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: color-mix(in srgb, var(--ink) 4%, transparent);
+  transition: border-color 0.15s ease;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.label-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.icon {
+  font-size: 1.25rem;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+}
+
+.name {
+  font: 600 0.9375rem/1.2 var(--font-display);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.status-great {
+  background: color-mix(in srgb, #22c55e 18%, transparent);
+  color: color-mix(in srgb, #22c55e 80%, var(--ink));
+  border: 1px solid color-mix(in srgb, #22c55e 40%, transparent);
+}
+
+.status-good {
+  background: color-mix(in srgb, #3b82f6 18%, transparent);
+  color: color-mix(in srgb, #3b82f6 80%, var(--ink));
+  border: 1px solid color-mix(in srgb, #3b82f6 40%, transparent);
+}
+
+.status-fair {
+  background: color-mix(in srgb, #f59e0b 18%, transparent);
+  color: color-mix(in srgb, #f59e0b 80%, var(--ink));
+  border: 1px solid color-mix(in srgb, #f59e0b 40%, transparent);
+}
+
+.status-bad {
+  background: color-mix(in srgb, #ef4444 18%, transparent);
+  color: color-mix(in srgb, #ef4444 80%, var(--ink));
+  border: 1px solid color-mix(in srgb, #ef4444 40%, transparent);
+}
+
+.reason {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  opacity: 0.85;
+  line-height: 1.35;
+}
+
+@media (min-width: 32rem) {
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 54rem) {
+  .list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}

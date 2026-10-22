@@ -1,0 +1,23 @@
+<section class="activities" aria-labelledby="activities-heading">
+  <div class="head">
+    <div>
+      <h2 id="activities-heading" class="heading">Outdoor Activities</h2>
+      <p class="sub">Suitability based on live weather, wind & air quality</p>
+    </div>
+  </div>
+
+  <div class="list" role="list">
+    @for (act of activities(); track act.id) {
+    <article class="card" role="listitem">
+      <div class="card-top">
+        <div class="label-group">
+          <span class="icon" aria-hidden="true">{{ act.icon }}</span>
+          <span class="name">{{ act.name }}</span>
+        </div>
+        <span class="badge" [class]="act.badgeClass">{{ act.status }}</span>
+      </div>
+      <p class="reason">{{ act.reason }}</p>
+    </article>
+    }
+  </div>
+</section>

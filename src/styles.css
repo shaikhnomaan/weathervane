@@ -1,0 +1,139 @@
+/* ---------- Global styles: reset, tokens, sky themes, utilities ----------
+   Everything component-specific lives in the component (emulated encapsulation).
+   Only cross-cutting things live here: design tokens, themes, a11y helpers. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  width: 100%;
+  min-height: 100dvh;
+}
+
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+h1,
+h2,
+p,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+:root {
+  --font-display: 'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --radius: 14px;
+  --radius-sm: 10px;
+}
+
+/* The page colour is driven by current conditions via [data-sky] on <app-root>.
+   Each theme defines: --ink (text), --paper (inverse), --sky-bg (gradient). */
+app-root {
+  display: block;
+  width: 100%;
+  min-height: 100dvh;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--sky-bg);
+  background-attachment: fixed;
+
+  --ink: #17252f;
+  --paper: #e9eef1;
+  --sky-bg: #e9eef1;
+  --panel: color-mix(in srgb, var(--ink) 7%, transparent);
+  --line: color-mix(in srgb, var(--ink) 22%, transparent);
+  --focus: var(--ink);
+}
+
+app-root[data-sky='clear-day'] {
+  --ink: #0b2233;
+  --paper: #e8f5fc;
+  --sky-bg: linear-gradient(180deg, #5aa9e6 0%, #bfe3f5 100%);
+}
+
+app-root[data-sky='clear-night'] {
+  --ink: #eaf0ff;
+  --paper: #0e1b3d;
+  --sky-bg: linear-gradient(180deg, #0e1b3d 0%, #2b3a67 100%);
+}
+
+app-root[data-sky='cloudy'] {
+  --ink: #101a22;
+  --paper: #e6eaee;
+  --sky-bg: linear-gradient(180deg, #9aa7b4 0%, #cdd5dc 100%);
+}
+
+app-root[data-sky='fog'] {
+  --ink: #14191c;
+  --paper: #eceeef;
+  --sky-bg: linear-gradient(180deg, #b8bec2 0%, #dadddf 100%);
+}
+
+app-root[data-sky='rain'] {
+  --ink: #f4f8fb;
+  --paper: #2f4457;
+  --sky-bg: linear-gradient(180deg, #2f4457 0%, #55697c 100%);
+}
+
+app-root[data-sky='snow'] {
+  --ink: #13202c;
+  --paper: #f2f6fa;
+  --sky-bg: linear-gradient(180deg, #c9d8e6 0%, #eef3f8 100%);
+}
+
+app-root[data-sky='storm'] {
+  --ink: #f2effa;
+  --paper: #2a2438;
+  --sky-bg: linear-gradient(180deg, #2a2438 0%, #4a4560 100%);
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

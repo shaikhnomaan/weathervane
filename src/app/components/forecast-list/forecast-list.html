@@ -1,0 +1,18 @@
+<section class="forecast" aria-labelledby="forecast-heading">
+  <h2 id="forecast-heading" class="heading">Next 7 days</h2>
+  <ol class="list">
+    @for (r of rows(); track r.key) {
+    <li class="row">
+      <span class="day">{{ r.day }}</span>
+      <span class="icon" aria-hidden="true" [title]="r.label">{{ r.icon }}</span>
+      <span class="rain">
+        <span aria-hidden="true">💧</span> {{ r.rain }}%
+      </span>
+      <span class="lo"><span class="sr-only">Low </span>{{ r.min }}°</span>
+      <span class="bar" aria-hidden="true"><i [style.left.%]="r.left" [style.width.%]="r.width"></i></span>
+      <span class="hi"><span class="sr-only">High </span>{{ r.max }}°</span>
+    </li>
+    }
+  </ol>
+  <p class="unit-note">Temperatures in {{ unitName() }}.</p>
+</section>
