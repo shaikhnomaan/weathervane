@@ -1,0 +1,59 @@
+<section class="planner" aria-labelledby="planner-heading">
+  <div class="head">
+    <h2 id="planner-heading" class="heading">Best time to go out</h2>
+    <p class="sub">The best hours for each activity in the next 24 hours. Tap one for the hour-by-hour view.</p>
+  </div>
+
+  <ul class="list">
+    @for (a of results(); track a.id) {
+    <li class="item">
+      <button type="button" class="card" [class.selected]="a.id === selectedId()"
+        [attr.aria-pressed]="a.id === selectedId()" (click)="select(a.id)">
+        <span class="card-top">
+          <span class="label-group">
+            <span class="icon" aria-hidden="true">{{ a.icon }}</span>
+            <span class="name">{{ a.name }}</span>
+          </span>
+          @if (a.best; as best) {
+          <span class="badge" [class]="best.badgeClass">{{ best.status }}</span>
+          } @else {
+          <span class="badge status-bad">Avoid</span>
+          }
+        </span>
+        @if (a.best; as best) {
+        <span class="when">{{ best.text }}</span>
+        <span class="why">{{ best.reason }}</span>
+        } @else {
+        <span class="when">No good time</span>
+        <span class="why">The next 24 hours look unsuitable</span>
+        }
+      </button>
+    </li>
+    }
+  </ul>
+
+  @if (selected(); as sel) {
+  @if (sel.slots.length) {
+  <div class="plan">
+    <h3 class="plan-title">{{ sel.name }}: next 24 hours</h3>
+
+    <div class="strip-scroll" tabindex="0" role="region" [attr.aria-label]="'Hour by hour for ' + sel.name">
+      <ol class="strip">
+        @for (s of sel.slots; track s.time) {
+        <li class="slot" [class.now]="s.isNow" [class.newday]="s.newDay" [class.in-best]="s.inBest">
+          <span class="sr-only">{{ s.ariaLabel }}</span>
+          <span class="slot-time" aria-hidden="true">{{ s.isNow ? 'Now' : s.label }}</span>
+          <span class="slot-icon" aria-hidden="true">{{ s.icon }}</span>
+          <span class="slot-bar" aria-hidden="true">
+            <i [class]="s.barClass" [style.height.%]="s.barHeight"></i>
+          </span>
+          <span class="slot-temp" aria-hidden="true">{{ s.temp }}°</span>
+        </li>
+        }
+      </ol>
+    </div>
+    <p class="legend">Taller bar = better. Outlined hours are the best window. Dashed = not a usual time for this activity.</p>
+  </div>
+  }
+  }
+</section>

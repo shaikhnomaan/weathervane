@@ -1,0 +1,41 @@
+@if (chips().length || activePlace()) {
+<section class="saved" aria-labelledby="saved-heading">
+  <h2 id="saved-heading" class="sr-only">Saved cities</h2>
+
+  <div class="row">
+    @if (chips().length) {
+    <ul class="chips">
+      @for (chip of chips(); track chip.key) {
+      <li class="chip" [class.active]="chip.active">
+        <button type="button" class="main" [attr.aria-current]="chip.active ? 'true' : null"
+          [attr.aria-label]="chip.label" (click)="select(chip.place)">
+          <span class="name">{{ chip.name }}</span>
+          @if (chip.temp !== null) {
+          <span class="icon" aria-hidden="true">{{ chip.icon }}</span>
+          <span class="temp" aria-hidden="true">{{ chip.temp }}°</span>
+          }
+        </button>
+        <button type="button" class="x" [attr.aria-label]="'Remove ' + chip.name" (click)="remove(chip.place)">
+          <span aria-hidden="true">×</span>
+        </button>
+      </li>
+      }
+    </ul>
+    }
+
+    @if (activePlace(); as place) {
+    @if (isSaved()) {
+    <span class="saved-note">★ {{ place.name }} saved</span>
+    } @else {
+    <button type="button" class="save" [disabled]="isFull()" (click)="save(place)">☆ Save {{ place.name }}</button>
+    }
+    }
+  </div>
+
+  @if (isFull() && !isSaved() && activePlace()) {
+  <p class="hint">You can save up to {{ maxSaved }} cities. Remove one to add another.</p>
+  }
+
+  <p class="sr-only" role="status">{{ announcement() }}</p>
+</section>
+}

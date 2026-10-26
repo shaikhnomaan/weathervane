@@ -1,0 +1,15 @@
+{
+  "name": "Weathervane",
+  "short_name": "Weathervane",
+  "description": "Live weather, a 7-day and 24-hour forecast, and the best time to go out.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#e9eef1",
+  "theme_color": "#e9eef1",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

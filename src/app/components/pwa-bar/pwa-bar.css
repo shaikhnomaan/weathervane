@@ -1,0 +1,84 @@
+:host {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0; /* lets the component shrink inside the page grid instead of widening it */
+}
+
+/* Nothing to show (online and nothing to install): take no space in the page grid. */
+:host:empty {
+  display: none;
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.625rem 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius);
+}
+
+.offline {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.install {
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.app-icon {
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 0.5rem;
+}
+
+.copy {
+  flex: 1 1 14rem;
+  min-width: 0;
+}
+
+.title {
+  font-weight: 650;
+}
+
+.text {
+  font-size: 0.875rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+button {
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--ink);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.quiet {
+  background: transparent;
+}
+
+/* Small phones: buttons share the full width under the text. */
+@media (max-width: 30rem) {
+  .actions {
+    width: 100%;
+    margin-left: 0;
+  }
+  .actions button {
+    flex: 1;
+  }
+}

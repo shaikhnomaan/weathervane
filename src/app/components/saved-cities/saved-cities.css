@@ -1,0 +1,143 @@
+:host {
+  display: block;
+  min-width: 0; /* lets the component shrink inside the page grid instead of widening it */
+}
+
+/* Nothing to show (no saved cities, no active city): take no space in the page grid. */
+:host:empty {
+  display: none;
+}
+
+.saved {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr); /* chips scroll inside this column instead of widening it */
+  gap: 0.5rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.75rem;
+  min-width: 0;
+}
+
+.chips {
+  display: flex;
+  gap: 0.5rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: stretch;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: var(--panel);
+}
+
+.chip.active {
+  border-color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+  box-shadow: inset 0 0 0 1px var(--ink);
+}
+
+.main {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  padding: 0 0.5rem 0 0.875rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.name {
+  max-width: 9rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.temp {
+  font-variant-numeric: tabular-nums;
+}
+
+.x {
+  min-width: 2.25rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.125rem;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.x:hover {
+  opacity: 1;
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.main:focus-visible,
+.x:focus-visible {
+  outline-offset: -3px;
+}
+
+.save {
+  max-width: 100%;
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  overflow: hidden;
+  border: 1.5px dashed var(--ink);
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.save:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ink) 10%, transparent);
+}
+
+.save:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.saved-note {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.hint {
+  font-size: 0.8125rem;
+}
+
+/* Phones: chips scroll sideways in one row; the save button sits on its own line below. */
+@media (max-width: 39.99rem) {
+  .chips {
+    flex: 1 1 100%;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+    scroll-snap-type: x proximity;
+  }
+  .chip {
+    scroll-snap-align: start;
+  }
+}
+
+/* Tablet and up: chips wrap onto extra lines instead of scrolling. */
+@media (min-width: 40rem) {
+  .chips {
+    flex-wrap: wrap;
+  }
+}

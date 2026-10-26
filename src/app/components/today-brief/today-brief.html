@@ -1,0 +1,45 @@
+<section class="brief" aria-labelledby="brief-heading">
+  <div class="kicker">
+    <h2 id="brief-heading" class="label">Today at a glance</h2>
+    <span class="greeting">{{ brief().greeting }}</span>
+  </div>
+
+  <p class="headline">{{ brief().headline }}</p>
+
+  <ul class="tips">
+    @for (tip of brief().tips; track tip.id) {
+    <li class="tip" [attr.data-level]="tip.level">
+      <span class="tip-icon" aria-hidden="true">{{ tip.icon }}</span>
+      <div class="tip-body">
+        <p class="tip-title">{{ tip.title }}</p>
+        <p class="tip-answer">{{ tip.answer }}</p>
+        <p class="tip-detail">{{ tip.detail }}</p>
+      </div>
+    </li>
+    }
+  </ul>
+
+  @if (brief().sun; as sun) {
+  <div class="sun">
+    <h3 class="sun-title">Sun &amp; light</h3>
+    <dl class="sun-grid">
+      <div>
+        <dt>Sunrise</dt>
+        <dd>{{ sun.sunrise }}</dd>
+      </div>
+      <div>
+        <dt>Sunset</dt>
+        <dd>{{ sun.sunset }}</dd>
+      </div>
+      <div>
+        <dt>Daylight</dt>
+        <dd>{{ sun.dayLength }}</dd>
+      </div>
+      <div>
+        <dt>Golden hour</dt>
+        <dd>{{ sun.goldenHour }}</dd>
+      </div>
+    </dl>
+  </div>
+  }
+</section>

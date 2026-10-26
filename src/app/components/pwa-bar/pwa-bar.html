@@ -1,0 +1,26 @@
+@if (!pwa.online()) {
+<div class="bar offline" role="status">
+  <span aria-hidden="true">📡</span>
+  <p class="text">You're offline. Showing the last saved forecast.</p>
+</div>
+}
+
+@if (pwa.showInstall()) {
+<section class="bar install" aria-labelledby="install-title">
+  <img class="app-icon" src="icons/icon-192.png" alt="" width="36" height="36" />
+  <div class="copy">
+    <p id="install-title" class="title">Install Weathervane</p>
+    @if (pwa.canInstall()) {
+    <p class="text">Add it to your home screen for one-tap access, even offline.</p>
+    } @else {
+    <p class="text">Tap <strong>Share</strong>, then <strong>Add to Home Screen</strong>.</p>
+    }
+  </div>
+  <div class="actions">
+    @if (pwa.canInstall()) {
+    <button type="button" class="primary" (click)="pwa.install()">Install</button>
+    }
+    <button type="button" class="quiet" (click)="pwa.dismiss()">Not now</button>
+  </div>
+</section>
+}
