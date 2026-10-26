@@ -18,6 +18,10 @@
   </header>
 
   <main id="main" tabindex="-1">
+    <app-pwa-bar /> <!-- NEW 1: offline notice + install banner -->
+    <app-saved-cities [activePlace]="state().place" [units]="state().units"
+      (placeSelected)="store.selectPlace($event)" /> <!-- NEW 2: saved city chips -->
+
     @if (state().error; as error) {
     <app-error-banner [error]="error"
       [canRetry]="state().place !== null && error.kind.startsWith('geolocation') === false" (retry)="store.refresh()"
@@ -25,12 +29,21 @@
     }
 
     @if (state().report; as report) {
+    <app-today-brief [report]="report" [units]="state().units" /> <!-- NEW 3: summary + quick answers + sun -->
     <div class="grid">
       <app-weather-card [report]="report" [units]="state().units" [refreshing]="state().fetching" />
       <app-forecast-list [days]="report.daily" [units]="state().units" />
     </div>
     <app-hourly-forecast [hours]="report.hourly" [units]="state().units" />
     <app-activities [current]="report.current" [units]="state().units" />
+    <app-activity-planner [hours]="report.hourly" [units]="state().units" /> <!-- NEW 4: best time to go out -->
+
+    <!-- <div class="grid">
+      <app-weather-card [report]="report" [units]="state().units" [refreshing]="state().fetching" />
+      <app-forecast-list [days]="report.daily" [units]="state().units" />
+    </div>
+    <app-hourly-forecast [hours]="report.hourly" [units]="state().units" />
+    <app-activities [current]="report.current" [units]="state().units" /> -->
     } @else if (state().fetching || state().locating) {
     <app-loading-spinner [label]="state().locating ? 'Finding your location…' : 'Loading weather…'" />
     } @else if (!state().error) {

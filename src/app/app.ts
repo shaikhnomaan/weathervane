@@ -11,12 +11,16 @@ import { GeolocationService, PermissionStatusValue } from './core/services/geolo
 import { WeatherStore } from './core/state/weather.store';
 import { describeWeather } from './core/util/weather-codes';
 import { HourlyForecast } from './components/hourly-forecast/hourly-forecast';
+import { ActivityPlanner } from './components/activity-planner/activity-planner';
+import { PwaBar } from './components/pwa-bar/pwa-bar';
+import { SavedCities } from './components/saved-cities/saved-cities';
+import { TodayBrief } from './components/today-brief/today-brief';
 
 /** Smart container: owns the store, passes plain data down, handles outputs. */
 @Component({
   selector: 'app-root',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [CitySearch, LocationButton, WeatherCard, ForecastList, Activities, LoadingSpinner, ErrorBanner, HourlyForecast],
+  imports: [CitySearch, LocationButton, WeatherCard, ForecastList, Activities, LoadingSpinner, ErrorBanner, HourlyForecast, TodayBrief, SavedCities, PwaBar, ActivityPlanner],
   host: { '[attr.data-sky]': 'sky()' },
   templateUrl: './app.html',
   styleUrl: './app.css',
